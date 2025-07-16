@@ -48,14 +48,15 @@
             # sudo apt install debhelper-compat libdw-dev libssl-dev -y
 
         - name: 提交并推送 config 文件
-            run: |
+          run: |
             git config --global user.name "github-actions[bot]"
             git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
         - name: 提交并推送 config 文件
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            run: |
+          run: |
+            cp  ${{ github.workspace }}/config-postmarketos-qcom-msm8953.aarch64 .
             git add config-postmarketos-qcom-msm8953.aarch64
             git commit -m "自动提交 config-postmarketos-qcom-msm8953.aarch64"
             git push origin HEAD:${{ github.ref }}
