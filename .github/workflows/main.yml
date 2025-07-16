@@ -46,6 +46,20 @@
             # sudo apt install build-essential openssl pkg-config libssl-dev libncurses-dev minizip libelf-dev flex bison libc6-dev libidn11-dev rsync bc lz4 debootstrap git curl -y
             # sudo apt install gcc-aarch64-linux-gnu dpkg-dev dpkg qemu-user-static -y
             # sudo apt install debhelper-compat libdw-dev libssl-dev -y
+
+        - name: 提交并推送 config 文件
+          env:
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+        - name: 提交并推送 config 文件
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            git add config-postmarketos-qcom-msm8953.aarch64
+            git commit -m "自动提交 config-postmarketos-qcom-msm8953.aarch64"
+            git push origin HEAD:${{ github.ref }}
+
+
             
         - name: Upload .config file
           uses: actions/upload-artifact@v4
